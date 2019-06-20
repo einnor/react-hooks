@@ -2,8 +2,8 @@
 import React from 'react';
 import App from '../src/App';
 
-const Home = () => {
+const Index = () => {
   return <App pageName="Home" />;
 }
 
-export default Home;
+export default Index;
