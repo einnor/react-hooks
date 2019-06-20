@@ -3,7 +3,6 @@ import ImageToggleOnScroll from "../src/ImageToggleOnScroll";
 
 
 const ImageChangeOnScroll = () => {
-    console.log(123);
     return (
         <div>
             {

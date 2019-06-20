@@ -4,12 +4,16 @@ const ImageTogglerOnScroll = ({ primaryImg, secondaryImg }) => {
 
     const imageRef = useRef(null);
 
+    const [isLoading, setIsLoading] = useState(true);
+
     useEffect(() => {
         window.addEventListener('scroll', scrollHandler);
+        setInView(isInView());
+        setIsLoading(false);
         return (() => {
             window.removeEventListener('scroll', scrollHandler);
         });
-    });
+    }, [isLoading]);
 
     const [inView, setInView] = useState(false);
 
@@ -27,11 +31,13 @@ const ImageTogglerOnScroll = ({ primaryImg, secondaryImg }) => {
         })
     };
 
-    return (
+    return isLoading ? null : (
         <img
             src={inView ? secondaryImg : primaryImg}
             alt=""
             ref={imageRef}
+            width="200"
+            height="200"
         />
     );
 };
