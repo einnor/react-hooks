@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../static/site.css';
@@ -6,6 +6,7 @@ import { Header } from '../src/Header';
 import { Menu } from '../src/Menu';
 import SpeakerData from './SpeakerData';
 import SpeakerDetail from './SpeakerDetail';
+import { ConfigContext } from  './App';
 
 const Speakers = ({}) => {
   const [speakingSaturday, setSpeakingSaturday] = useState(true);
@@ -13,6 +14,8 @@ const Speakers = ({}) => {
 
   const [speakerList, setSpeakerList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  
+  const context = useContext(ConfigContext);
 
   useEffect(() => {
     setIsLoading(true);
@@ -77,30 +80,34 @@ const Speakers = ({}) => {
       <Menu />
       <div className="container">
         <div className="btn-toolbar  margintopbottom5 checkbox-bigger">
-          <div className="hide">
-            <div className="form-check-inline">
-              <label className="form-check-label">
-                <input
-                  type="checkbox"
-                  className="form-check-input"
-                  onChange={handleChangeSaturday}
-                  checked={speakingSaturday}
-                />
-                Saturday Speakers
-              </label>
-            </div>
-            <div className="form-check-inline">
-              <label className="form-check-label">
-                <input
-                  type="checkbox"
-                  className="form-check-input"
-                  onChange={handleChangeSunday}
-                  checked={speakingSunday}
-                />
-                Sunday Speakers
-              </label>
-            </div>
-          </div>
+          {
+            context.showSpeakerSpeakingDays === false ? null : (
+              <div className="hide">
+                <div className="form-check-inline">
+                  <label className="form-check-label">
+                    <input
+                      type="checkbox"
+                      className="form-check-input"
+                      onChange={handleChangeSaturday}
+                      checked={speakingSaturday}
+                    />
+                    Saturday Speakers
+                  </label>
+                </div>
+                <div className="form-check-inline">
+                  <label className="form-check-label">
+                    <input
+                      type="checkbox"
+                      className="form-check-input"
+                      onChange={handleChangeSunday}
+                      checked={speakingSunday}
+                    />
+                    Sunday Speakers
+                  </label>
+                </div>
+              </div>
+            )
+          }
         </div>
         <div className="row">
           <div className="card-deck">
