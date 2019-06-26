@@ -6671,7 +6671,7 @@ function connect(options) {
       error.name = err.name;
       error.stack = err.stack; // __NEXT_DIST_DIR is provided by webpack
 
-      source_map_support_1.rewriteStacktrace(error, "/Users/ronnie/Workspace/React.js/react-hooks/.next");
+      source_map_support_1.rewriteStacktrace(error, "/Users/peggymutheu/Workspace/react-hooks/.next");
       return error;
     }
   };
