@@ -79,6 +79,7 @@ const SignMeUp = ({ signupCallback }) => {
           >
             {buttonText}
           </button>
+          &nbsp;&nbsp;<a href='/login'>Login</a>
         </div>
       </div>
     </div>
