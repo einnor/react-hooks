@@ -142,7 +142,7 @@ const Speakers = ({}) => {
         <div className="row">
           <div className="card-deck">
             {speakerListFiltered.map(
-              ({ id, firstName, lastName, bio, favorite }) => {
+              ({ id, firstName, lastName, sat, sun, bio, favorite }) => {
                 return (
                   <SpeakerDetail
                     key={id}
