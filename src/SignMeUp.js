@@ -42,6 +42,17 @@ const SignMeUp = ({ signupCallback }) => {
 
   //console.log("src/SignMeUp called");
 
+  if (context.loggedInUserEmail) {
+    return (
+      <div className="container">
+        <div className="content">
+          <span>Logged in User Email: {context.loggedInUserEmail}</span>&nbsp;&nbsp;
+          <a href='/logout' >Logout</a>
+        </div>
+      </div>
+    );
+  }
+
   return context.showSignMeUp ? (
     <div className="container">
       <div>
