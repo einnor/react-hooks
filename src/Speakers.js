@@ -72,18 +72,34 @@ const Speakers = ({}) => {
     setSpeakingSunday(!speakingSunday);
   };
 
-  const heartFavoriteHandler = useCallback((e, favoriteValue) => {
+  const heartFavoriteHandler = useCallback((e, speakerRec) => {
     e.preventDefault();
-    const sessionId = parseInt(e.target.attributes["data-sessionid"].value);
-    dispatch({ type: favoriteValue ? 'favorite' : 'unfavorite', sessionId });
-    // setSpeakerList(speakerList.map(item => {
-    //   if (item.id === sessionId) {
-    //     item.favorite = favoriteValue;
-    //     return item;
-    //   }
-    //   return item;
-    // }));
+    const toggledRec = { ...speakerRec, favorite: !speakerRec.favorite };
+    axios.put(`http://localhost:4000/speakers/${speakerRec.id}`, toggledRec)
+      .then(function(response) {
+        updateDataRecord(toggledRec);
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+    // const sessionId = parseInt(e.target.attributes["data-sessionid"].value);
+    // dispatch({ type: favoriteValue ? 'favorite' : 'unfavorite', sessionId });
+    // // setSpeakerList(speakerList.map(item => {
+    // //   if (item.id === sessionId) {
+    // //     item.favorite = favoriteValue;
+    // //     return item;
+    // //   }
+    // //   return item;
+    // // }));
   }, []);
+
+  if (hasErrored) {
+    return (
+      <div>
+        {errorMessage}&nbsp;"Make sure you have launched "npm run json-server"
+      </div>
+    );
+  }
 
   if (isLoading) return <div>Loading...</div>;
 
@@ -135,6 +151,8 @@ const Speakers = ({}) => {
                     firstName={firstName}
                     lastName={lastName}
                     bio={bio}
+                    sat={sat}
+                    sun={sun}
                   />
                 );
               }
